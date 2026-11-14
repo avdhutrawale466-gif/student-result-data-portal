@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1120;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: #111827;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #263244;
+        }
+
+        .navbar h2 {
+            color: #38bdf8;
+        }
+
+        .logout {
+            color: #ffffff;
+            background: #ef4444;
+            padding: 9px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1400px;
+            margin: 30px auto;
+        }
+
+        .welcome {
+            background: #111827;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #263244;
+        }
+
+        .welcome h1 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .student-info {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        /* STAT CARDS */
+
+        .stats {
+            display: grid;
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #111827;
+            padding: 22px;
+            border-radius: 15px;
+            border: 1px solid #263244;
+        }
+
+        .stat-card h3 {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            font-size: 30px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        /* SEMESTER */
+
+        .semester-card {
+            background: #111827;
+            padding: 22px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #263244;
+            overflow-x: auto;
+        }
+
+        .semester-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .semester-header h2 {
+            color: #38bdf8;
+        }
+
+        .semester-info {
+            color: #cbd5e1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th {
+            background: #1e293b;
+            color: #38bdf8;
+            padding: 13px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #263244;
+            color: #e2e8f0;
+        }
+
+        tr:hover {
+            background: #172033;
+        }
+
+        .pass {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .fail {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        .no-data {
+            color: #94a3b8;
+            padding: 20px;
+        }
+
+        @media (max-width: 900px) {
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <h2>
+            Student Result Portal
+        </h2>
+
+        <a
+            href="{% url 'student_logout' %}"
+            class="logout"
+        >
+            Logout
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <!-- STUDENT INFO -->
+
+        <div class="welcome">
+
+            <h1>
+                Welcome, {{ student.name }}
+            </h1>
+
+            <div class="student-info">
+
+                <strong>Student ID:</strong>
+                {{ student.student_id }}
+
+                <br>
+
+                <strong>Email:</strong>
+                {{ student.email }}
+
+            </div>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Overall CGPA
+                </h3>
+
+                <div class="value">
+                    {{ cgpa }}
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Total Subjects
+                </h3>
+
+                <div class="value">
+                    {{ total_subjects }}
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Passed Subjects
+                </h3>
+
+                <div class="value">
+                    {{ passed_subjects }}
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Backlogs
+                </h3>
+
+                <div class="value">
+                    {{ backlog_subjects }}
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- SEMESTER RESULTS -->
+
+
+        {% for semester_data in semesters %}
+
+        <div class="semester-card">
+
+
+            <div class="semester-header">
+
+                <h2>
+                    Semester {{ semester_data.semester }}
+                </h2>
+
+
+                <div class="semester-info">
+
+                    SGPA:
+
+                    <strong>
+                        {{ semester_data.sgpa }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Course Code
+                        </th>
+
+                        <th>
+                            Subject
+                        </th>
+
+                        <th>
+                            Marks
+                        </th>
+
+                        <th>
+                            Grade
+                        </th>
+
+                        <th>
+                            Grade Point
+                        </th>
+
+                        <th>
+                            Credits
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% for result in semester_data.results %}
+
+                    <tr>
+
+                        <td>
+                            {{ result.subject.course_code }}
+                        </td>
+
+                        <td>
+                            {{ result.subject.subject_name }}
+                        </td>
+
+                        <td>
+                            {% if result.obtained_marks %}
+                                {{ result.obtained_marks }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {{ result.grade }}
+                        </td>
+
+                        <td>
+                            {% if result.grade_point %}
+                                {{ result.grade_point }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if result.credits %}
+                                {{ result.credits }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+
+                        <td>
+
+                            {% if result.result_status == "PASS" %}
+
+                                <span class="pass">
+                                    PASS
+                                </span>
+
+                            {% elif result.result_status == "FAIL" %}
+
+                                <span class="fail">
+                                    FAIL
+                                </span>
+
+                            {% else %}
+
+                                -
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="no-data"
+                        >
+                            No results available.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+        {% empty %}
+
+        <div class="semester-card">
+
+            <div class="no-data">
+
+                No result data available.
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
+    </div>
+
+
+</body>
+
+</html>

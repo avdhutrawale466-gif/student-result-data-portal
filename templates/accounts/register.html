@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Result Portal | Register</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #020308;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .background {
+            position: fixed;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(0, 70, 255, 0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(130, 0, 255, 0.10),
+                    transparent 30%
+                );
+
+            overflow: hidden;
+        }
+
+        .light {
+            position: absolute;
+            height: 2px;
+            border-radius: 50%;
+
+            transform: rotate(35deg);
+
+            filter: blur(1px);
+            opacity: 0.8;
+        }
+
+        .one {
+            width: 320px;
+            top: 10%;
+            left: 25%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #155eff,
+                transparent
+            );
+
+            box-shadow: 0 0 15px #155eff;
+        }
+
+        .two {
+            width: 420px;
+            top: 30%;
+            left: 5%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #4c28ff,
+                transparent
+            );
+
+            box-shadow: 0 0 18px #4c28ff;
+        }
+
+        .three {
+            width: 280px;
+            bottom: 20%;
+            right: 10%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #00aaff,
+                transparent
+            );
+
+            box-shadow: 0 0 18px #00aaff;
+        }
+
+        .four {
+            width: 350px;
+            bottom: 8%;
+            left: 30%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #8a20ff,
+                transparent
+            );
+
+            box-shadow: 0 0 18px #8a20ff;
+        }
+
+
+        .register-container {
+
+            position: relative;
+            z-index: 2;
+
+            width: 900px;
+            max-width: 92%;
+
+            min-height: 600px;
+
+            display: grid;
+            grid-template-columns: 1fr 410px;
+
+            background: rgba(4, 6, 12, 0.90);
+
+            border: 1px solid rgba(110, 120, 255, 0.15);
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 0 80px rgba(0, 60, 255, 0.08),
+                0 0 120px rgba(120, 0, 255, 0.05);
+        }
+
+
+        .left-section {
+
+            padding: 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(20, 30, 70, 0.25),
+                    transparent 65%
+                );
+        }
+
+
+        .logo-area {
+
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+
+        .logo {
+
+            width: 46px;
+            height: 46px;
+
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            background: linear-gradient(
+                135deg,
+                #155eff,
+                #9d25ff
+            );
+
+            box-shadow:
+                0 0 25px rgba(70, 70, 255, 0.35);
+        }
+
+
+        .logo-text h3 {
+            font-size: 16px;
+        }
+
+
+        .logo-text p {
+
+            margin-top: 4px;
+
+            font-size: 11px;
+
+            color: #70758a;
+        }
+
+
+        .welcome {
+
+            max-width: 480px;
+        }
+
+
+        .welcome-small {
+
+            color: #668cff;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .welcome h1 {
+
+            font-size: 48px;
+
+            line-height: 1.05;
+        }
+
+
+        .gradient-text {
+
+            background: linear-gradient(
+                90deg,
+                #5b91ff,
+                #b64cff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .description {
+
+            margin-top: 25px;
+
+            color: #777c91;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            max-width: 420px;
+        }
+
+
+        .register-section {
+
+            padding: 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background: rgba(7, 9, 17, 0.96);
+
+            border-left: 1px solid rgba(110, 120, 255, 0.10);
+        }
+
+
+        .register-section h2 {
+
+            font-size: 28px;
+        }
+
+
+        .subtitle {
+
+            margin-top: 9px;
+            margin-bottom: 20px;
+
+            color: #70758a;
+
+            font-size: 13px;
+        }
+
+
+        .message {
+
+            padding: 10px;
+
+            margin-bottom: 12px;
+
+            border-radius: 8px;
+
+            background: rgba(255, 50, 80, 0.08);
+
+            border: 1px solid rgba(255, 50, 80, 0.2);
+
+            color: #ff718a;
+
+            font-size: 12px;
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-top: 12px;
+            margin-bottom: 7px;
+
+            color: #a8adbf;
+
+            font-size: 12px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border-radius: 9px;
+
+            border: 1px solid #24283a;
+
+            outline: none;
+
+            background: #0b0e17;
+
+            color: white;
+
+            font-size: 13px;
+
+            transition: 0.25s;
+        }
+
+
+        input::placeholder {
+            color: #4e5365;
+        }
+
+
+        input:focus {
+
+            border-color: #536dff;
+
+            box-shadow:
+                0 0 20px rgba(70, 90, 255, 0.14);
+        }
+
+
+        .register-button {
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            background: linear-gradient(
+                90deg,
+                #155eff,
+                #8f25ff
+            );
+
+            box-shadow:
+                0 0 25px rgba(70, 70, 255, 0.22);
+
+            transition: 0.25s;
+        }
+
+
+        .register-button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 0 35px rgba(90, 70, 255, 0.38);
+        }
+
+
+        .bottom-text {
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #686d80;
+
+            font-size: 12px;
+        }
+
+
+        .bottom-text a {
+
+            color: #7190ff;
+
+            text-decoration: none;
+        }
+
+
+        .bottom-text a:hover {
+            color: #a070ff;
+        }
+
+
+        @media (max-width: 800px) {
+
+            body {
+                overflow-y: auto;
+            }
+
+            .register-container {
+
+                grid-template-columns: 1fr;
+
+                margin: 25px 0;
+            }
+
+            .left-section {
+                display: none;
+            }
+
+            .register-section {
+
+                border-left: none;
+
+                padding: 40px 30px;
+            }
+        }
+
+
+        @media (max-width: 450px) {
+
+            .register-container {
+                max-width: 94%;
+            }
+
+            .register-section {
+                padding: 35px 25px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="background">
+
+        <div class="light one"></div>
+        <div class="light two"></div>
+        <div class="light three"></div>
+        <div class="light four"></div>
+
+    </div>
+
+
+    <div class="register-container">
+
+
+        <div class="left-section">
+
+
+            <div class="logo-area">
+
+                <div class="logo">
+                    SR
+                </div>
+
+                <div class="logo-text">
+
+                    <h3>
+                        Student Result
+                    </h3>
+
+                    <p>
+                        University Portal
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="welcome">
+
+                <div class="welcome-small">
+                    JOIN THE PORTAL
+                </div>
+
+                <h1>
+
+                    Start your
+
+                    <span class="gradient-text">
+                        academic journey.
+                    </span>
+
+                </h1>
+
+
+                <p class="description">
+
+                    Create your student account and
+                    securely access your university
+                    examination results, semester history
+                    and academic performance.
+
+                </p>
+
+            </div>
+
+
+            <div></div>
+
+        </div>
+
+
+
+        <div class="register-section">
+
+
+            <h2>
+                Create Account
+            </h2>
+
+
+            <p class="subtitle">
+                Register using your university details
+            </p>
+
+
+            {% if error %}
+
+                <div class="message">
+                    {{ error }}
+                </div>
+
+            {% endif %}
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <label>
+                    Student ID / PRN
+                </label>
+
+                <input
+                    type="text"
+                    name="student_id"
+                    placeholder="Enter your Student ID / PRN"
+                    required
+                >
+
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+
+                <label>
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    name="confirm_password"
+                    placeholder="Confirm your password"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="register-button"
+                >
+                    CREATE ACCOUNT
+                </button>
+
+            </form>
+
+
+            <div class="bottom-text">
+
+                Already have an account?
+
+                <a href="/">
+                    Login
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -218,3 +219,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+=======
+﻿__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+.env
+.env.*
+.vscode/
+.idea/
+*.log
+db.sqlite3
+.pytest_cache/
+media/
+>>>>>>> db51e54 (Initial Student Result Portal upload)

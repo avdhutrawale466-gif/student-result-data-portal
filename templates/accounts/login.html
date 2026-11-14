@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Result Portal | Login</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #020308;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+
+        /* BACKGROUND */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(0, 70, 255, 0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(130, 0, 255, 0.10),
+                    transparent 30%
+                );
+        }
+
+
+        .light {
+            position: absolute;
+            height: 2px;
+            border-radius: 50%;
+            transform: rotate(35deg);
+            filter: blur(1px);
+            opacity: 0.8;
+        }
+
+
+        .light.one {
+            width: 300px;
+            top: 8%;
+            left: 28%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #155eff,
+                transparent
+            );
+            box-shadow: 0 0 15px #155eff;
+        }
+
+
+        .light.two {
+            width: 420px;
+            top: 25%;
+            left: 5%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #4c28ff,
+                transparent
+            );
+            box-shadow: 0 0 18px #4c28ff;
+        }
+
+
+        .light.three {
+            width: 260px;
+            top: 42%;
+            right: 20%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #00aaff,
+                transparent
+            );
+            box-shadow: 0 0 18px #00aaff;
+        }
+
+
+        .light.four {
+            width: 330px;
+            bottom: 12%;
+            left: 30%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #8a20ff,
+                transparent
+            );
+            box-shadow: 0 0 18px #8a20ff;
+        }
+
+
+        .light.five {
+            width: 220px;
+            bottom: 28%;
+            right: 10%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #00bfff,
+                transparent
+            );
+            box-shadow: 0 0 18px #00bfff;
+        }
+
+
+        /* MAIN CONTAINER */
+
+        .login-container {
+            position: relative;
+            z-index: 2;
+
+            width: 900px;
+            max-width: 92%;
+
+            min-height: 560px;
+
+            display: grid;
+            grid-template-columns: 1fr 400px;
+
+            background: rgba(4, 6, 12, 0.88);
+
+            border: 1px solid rgba(110, 120, 255, 0.15);
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 0 80px rgba(0, 60, 255, 0.08),
+                0 0 120px rgba(120, 0, 255, 0.05);
+        }
+
+
+        /* LEFT SIDE */
+
+        .left-section {
+            padding: 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(20, 30, 70, 0.25),
+                    transparent 65%
+                );
+        }
+
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+
+        .logo {
+            width: 46px;
+            height: 46px;
+
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            background: linear-gradient(
+                135deg,
+                #155eff,
+                #9d25ff
+            );
+
+            box-shadow:
+                0 0 25px rgba(70, 70, 255, 0.35);
+        }
+
+
+        .logo-text h3 {
+            font-size: 16px;
+        }
+
+
+        .logo-text p {
+            margin-top: 4px;
+            font-size: 11px;
+            color: #70758a;
+        }
+
+
+        .welcome {
+            max-width: 480px;
+        }
+
+
+        .welcome-small {
+            color: #668cff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+
+        .welcome h1 {
+            font-size: 52px;
+            line-height: 1.05;
+        }
+
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #5b91ff,
+                #b64cff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .welcome-description {
+            margin-top: 25px;
+
+            color: #777c91;
+
+            font-size: 14px;
+            line-height: 1.8;
+
+            max-width: 420px;
+        }
+
+
+        /* LOGIN CARD */
+
+        .login-section {
+            padding: 55px 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background: rgba(7, 9, 17, 0.96);
+
+            border-left: 1px solid rgba(110, 120, 255, 0.10);
+        }
+
+
+        .login-section h2 {
+            font-size: 28px;
+        }
+
+
+        .login-subtitle {
+            margin-top: 9px;
+            margin-bottom: 28px;
+
+            color: #70758a;
+
+            font-size: 13px;
+        }
+
+
+        .message {
+            padding: 11px;
+
+            margin-bottom: 15px;
+
+            border-radius: 8px;
+
+            background: rgba(255, 50, 80, 0.08);
+
+            border: 1px solid rgba(255, 50, 80, 0.2);
+
+            color: #ff718a;
+
+            font-size: 12px;
+        }
+
+
+        label {
+            display: block;
+
+            margin-top: 16px;
+            margin-bottom: 8px;
+
+            color: #a8adbf;
+
+            font-size: 12px;
+        }
+
+
+        input {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border-radius: 9px;
+
+            border: 1px solid #24283a;
+
+            outline: none;
+
+            background: #0b0e17;
+
+            color: white;
+
+            font-size: 13px;
+
+            transition: 0.25s;
+        }
+
+
+        input::placeholder {
+            color: #4e5365;
+        }
+
+
+        input:focus {
+            border-color: #536dff;
+
+            box-shadow:
+                0 0 20px rgba(70, 90, 255, 0.14);
+        }
+
+
+        .login-button {
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 14px;
+
+            border: none;
+            border-radius: 9px;
+
+            color: white;
+
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            background: linear-gradient(
+                90deg,
+                #155eff,
+                #8f25ff
+            );
+
+            box-shadow:
+                0 0 25px rgba(70, 70, 255, 0.22);
+
+            transition: 0.25s;
+        }
+
+
+        .login-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 0 35px rgba(90, 70, 255, 0.38);
+        }
+
+
+        .bottom-text {
+            text-align: center;
+
+            margin-top: 23px;
+
+            color: #686d80;
+
+            font-size: 12px;
+        }
+
+
+        .bottom-text a {
+            color: #7190ff;
+            text-decoration: none;
+        }
+
+
+        .bottom-text a:hover {
+            color: #a070ff;
+        }
+
+
+        .admin-link {
+            text-align: center;
+
+            margin-top: 18px;
+
+            font-size: 11px;
+        }
+
+
+        .admin-link a {
+            color: #4f5569;
+            text-decoration: none;
+        }
+
+
+        .admin-link a:hover {
+            color: #778cff;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            body {
+                overflow-y: auto;
+            }
+
+
+            .login-container {
+                grid-template-columns: 1fr;
+
+                margin: 25px 0;
+            }
+
+
+            .left-section {
+                display: none;
+            }
+
+
+            .login-section {
+                border-left: none;
+
+                padding: 45px 30px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .login-container {
+                max-width: 94%;
+            }
+
+
+            .login-section {
+                padding: 40px 25px;
+            }
+
+
+            .login-section h2 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="background">
+
+        <div class="light one"></div>
+        <div class="light two"></div>
+        <div class="light three"></div>
+        <div class="light four"></div>
+        <div class="light five"></div>
+
+    </div>
+
+
+    <!-- LOGIN CONTAINER -->
+
+    <div class="login-container">
+
+
+        <!-- LEFT -->
+
+        <div class="left-section">
+
+
+            <div class="logo-area">
+
+                <div class="logo">
+                    SR
+                </div>
+
+                <div class="logo-text">
+
+                    <h3>
+                        Student Result
+                    </h3>
+
+                    <p>
+                        University Portal
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="welcome">
+
+                <div class="welcome-small">
+                    WELCOME BACK
+                </div>
+
+                <h1>
+
+                    Your academic
+
+                    <span class="gradient-text">
+                        journey.
+                    </span>
+
+                </h1>
+
+                <p class="welcome-description">
+
+                    Access your semester results,
+                    academic history and performance
+                    from one secure student portal.
+
+                </p>
+
+            </div>
+
+
+            <div></div>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <div class="login-section">
+
+
+            <h2>
+                Student Login
+            </h2>
+
+
+            <p class="login-subtitle">
+                Sign in to access your academic portal
+            </p>
+
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <label>
+                    Student ID / PRN
+                </label>
+
+                <input
+                    type="text"
+                    name="student_id"
+                    placeholder="Enter your Student ID"
+                    required
+                >
+
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    LOGIN
+                </button>
+
+            </form>
+
+
+            <div class="bottom-text">
+
+                Don't have an account?
+
+                <a href="/register/">
+                    Create Account
+                </a>
+
+            </div>
+
+
+            <div class="admin-link">
+
+                <a href="/admin/">
+                    Admin Portal
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
